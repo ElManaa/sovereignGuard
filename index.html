@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sovereign Guard — Control the data your enterprise sends to AI</title>
+  <meta name="description" content="Sovereign Guard is the compliance middleware that tokenizes PII, enforces policy, and audits every prompt before it reaches OpenAI, Anthropic, or any LLM. Built for EU AI Act, GDPR and DORA." />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sovereign Guard — Control the data your enterprise sends to AI" />
+  <meta property="og:description" content="The AI governance gateway for EU enterprises. Tokenize PII, enforce policy, audit every prompt — before it ever leaves your network." />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="theme-color" content="#0a0e1a" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Decorative background -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#top" class="brand" aria-label="Sovereign Guard home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L3 5.5v6.2c0 5 3.7 8.6 9 10.3 5.3-1.7 9-5.3 9-10.3V5.5L12 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M8.5 12l2.4 2.4 4.6-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand__name">Sovereign<span>Guard</span></span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#problem">Problem</a>
+        <a href="#why-now">Why now</a>
+        <a href="#product">Product</a>
+        <a href="#platform">Platform</a>
+        <a href="#roadmap">Roadmap</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a href="#contact" class="btn btn--ghost">Contact</a>
+        <a href="#demo" class="btn btn--primary">Book a demo</a>
+      </div>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__copy reveal">
+          <span class="eyebrow">AI Governance Gateway · Built for the EU</span>
+          <h1 class="hero__title">
+            Control the data your enterprise<br />
+            <span class="grad-text">sends to AI.</span>
+          </h1>
+          <p class="hero__sub">
+            Sovereign Guard is the compliance middleware that tokenizes PII, enforces policy,
+            and audits every prompt &mdash; <strong>before</strong> it ever reaches OpenAI,
+            Anthropic, or any LLM.
+          </p>
+          <div class="hero__cta">
+            <a href="#demo" class="btn btn--primary btn--lg">Book a demo</a>
+            <a href="#product" class="btn btn--ghost btn--lg">See how it works</a>
+          </div>
+          <ul class="hero__trust">
+            <li>EU AI Act</li>
+            <li>GDPR</li>
+            <li>DORA</li>
+            <li>Zero-trust · On-prem</li>
+          </ul>
+        </div>
+
+        <div class="hero__visual reveal" aria-hidden="true">
+          <div class="flow-card">
+            <div class="flow-card__head">
+              <span class="dot dot--red"></span><span class="dot dot--amber"></span><span class="dot dot--green"></span>
+              <span class="flow-card__title">prompt.intercept()</span>
+            </div>
+            <div class="flow-card__body">
+              <p class="code-line"><span class="c-muted">user&gt;</span> Email <span class="c-pii">john.doe@bank.eu</span>, IBAN <span class="c-pii">DE89 3704 0044 0532 0130 00</span></p>
+              <div class="flow-arrow"><span>Sovereign Guard</span></div>
+              <p class="code-line"><span class="c-ok">ai&gt;</span> Email <span class="c-token">[EMAIL_7f3a]</span>, IBAN <span class="c-token">[IBAN_b21c]</span></p>
+              <ul class="flow-checks">
+                <li><span>✓</span> PII tokenized</li>
+                <li><span>✓</span> Policy passed</li>
+                <li><span>✓</span> Audit entry sealed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="section" id="problem">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="kicker">The pain</span>
+          <h2>You don't actually control what leaves your network.</h2>
+          <p class="lead">
+            Your teams already paste customer records, contracts and source code into ChatGPT and Claude.
+            That data leaves the EU, lands on third-party servers, and you have no record it ever happened.
+          </p>
+        </div>
+        <div class="grid grid--3">
+          <article class="card reveal">
+            <div class="card__icon">🕳️</div>
+            <h3>Shadow AI everywhere</h3>
+            <p>Staff use whatever LLM is fastest. Sensitive data flows out through channels security never approved and can't see.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon">🌍</div>
+            <h3>Data leaves the EU</h3>
+            <p>Prompts containing PII are processed by US providers. For EU financial institutions that's a residency and lawful-basis problem on day one.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon">📭</div>
+            <h3>No audit trail</h3>
+            <p>When a regulator or DPO asks "what personal data did you send to AI, and on what basis?", there is no answer to give.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY NOW -->
+    <section class="section section--alt" id="why-now">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="kicker">Why now</span>
+          <h2>The regulation already landed. The clock is running.</h2>
+          <p class="lead">
+            The EU AI Act (Regulation 2024/1689) is now in force and phasing in alongside GDPR and DORA.
+            Using AI without governance is no longer a grey area &mdash; it's an exposure.
+          </p>
+        </div>
+        <div class="grid grid--3">
+          <article class="stat-card reveal">
+            <div class="stat-card__big">€35M</div>
+            <p>or up to <strong>7% of global turnover</strong> &mdash; the ceiling for EU AI Act penalties for prohibited practices.</p>
+          </article>
+          <article class="stat-card reveal">
+            <div class="stat-card__big">2026</div>
+            <p>high-risk AI obligations phase in. Controls, documentation and audit trails must exist <strong>before</strong>, not after.</p>
+          </article>
+          <article class="stat-card reveal">
+            <div class="stat-card__big">3×</div>
+            <p>overlapping regimes &mdash; <strong>EU AI Act, GDPR, DORA</strong> &mdash; now scrutinise how financial entities use AI and manage ICT risk.</p>
+          </article>
+        </div>
+        <p class="why-now__note reveal">
+          The institutions that adopt AI safely will move fastest. The ones that don't will either freeze AI entirely or
+          carry a liability they can't measure. Sovereign Guard turns "we can't risk it" into "we're covered."
+        </p>
+      </div>
+    </section>
+
+    <!-- PRODUCT (non-technical) -->
+    <section class="section" id="product">
+      <div class="container product__inner">
+        <div class="product__copy reveal">
+          <span class="kicker">The product</span>
+          <h2>A control plane between your people and the AI they use.</h2>
+          <p class="lead">
+            Sovereign Guard sits quietly in the middle. Every request to an AI model or connected tool
+            passes through it first &mdash; so sensitive data is protected, your rules are applied, and
+            everything is recorded.
+          </p>
+          <ul class="checklist">
+            <li><strong>Protects</strong> sensitive data before it ever leaves your walls.</li>
+            <li><strong>Enforces</strong> your policies on what AI can and cannot be used for.</li>
+            <li><strong>Audits</strong> every interaction in a tamper-evident record you can hand to a regulator.</li>
+            <li><strong>Lets you say yes</strong> to AI without betting the bank on it.</li>
+          </ul>
+        </div>
+        <div class="product__diagram reveal" aria-hidden="true">
+          <div class="diagram">
+            <div class="diagram__node diagram__node--people">Your people<br/><span>& apps</span></div>
+            <div class="diagram__pipe"></div>
+            <div class="diagram__node diagram__node--core">
+              <span class="diagram__badge">Sovereign Guard</span>
+              <small>Control · Protect · Audit</small>
+            </div>
+            <div class="diagram__pipe"></div>
+            <div class="diagram__node diagram__node--ai">AI & tools<br/><span>OpenAI · Anthropic · MCP</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLATFORM (technical) -->
+    <section class="section section--alt" id="platform">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="kicker">Under the hood</span>
+          <h2>The governance gateway you wish already existed.</h2>
+          <p class="lead">
+            An on-prem, zero-trust pipeline that runs inside your infrastructure. PII never leaves in
+            identifiable form &mdash; and you can prove it.
+          </p>
+        </div>
+        <div class="grid grid--3 features">
+          <article class="feature reveal">
+            <div class="feature__icon">🔐</div>
+            <h3>PII Detection &amp; Tokenization</h3>
+            <p>Microsoft Presidio + custom EU recognizers detect IBAN, SWIFT/BIC and national IDs, then replace them with reversible tokens. Mappings are encrypted on-prem.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature__icon">⚖️</div>
+            <h3>Policy Engine</h3>
+            <p>Open Policy Agent evaluates every request <em>before</em> dispatch, with a versioned EU AI Act policy catalogue, dry-run and rollback.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature__icon">🧾</div>
+            <h3>Immutable Audit Log</h3>
+            <p>Every interaction sealed in a SHA-256 hash chain. Tamper-evident, independently verifiable, retained for the regulatory period.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature__icon">🔀</div>
+            <h3>AI Provider Proxy</h3>
+            <p>Smart routing across OpenAI and Anthropic with a circuit breaker &mdash; failover that never bypasses the compliance pipeline.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature__icon">🧩</div>
+            <h3>Governed MCP Proxy</h3>
+            <p>Tool calls and agent actions flow through the same controls, so autonomous workflows stay inside policy.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature__icon">🗝️</div>
+            <h3>Keys Never Leave</h3>
+            <p>HSM/KMS-backed key custody, per-tenant separation, and crypto-shredding for verifiable erasure. Your keys, your boundary.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="section" id="roadmap">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="kicker">Where we are</span>
+          <h2>MVP shipped. Looking for the partners who feel this pain.</h2>
+          <p class="lead">
+            The core engine works today. We're raising and partnering to harden it into the product a
+            tier-1 EU bank will deploy &mdash; and we want design partners and investors who get it.
+          </p>
+        </div>
+        <ol class="timeline reveal">
+          <li class="timeline__item is-done">
+            <span class="timeline__dot"></span>
+            <div>
+              <h4>MVP <span class="tag tag--done">Done</span></h4>
+              <p>PII tokenization, OPA policy engine, hash-chain audit, AI + MCP proxies, GDPR endpoints and RBAC &mdash; running end to end.</p>
+            </div>
+          </li>
+          <li class="timeline__item is-current">
+            <span class="timeline__dot"></span>
+            <div>
+              <h4>Now <span class="tag tag--now">In progress</span></h4>
+              <p>Production hardening: enterprise SSO, HSM/KMS key custody, multi-tenancy, EU data residency and the compliance evidence pack.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__dot"></span>
+            <div>
+              <h4>Next <span class="tag">Design partners</span></h4>
+              <p>Pilot deployments with EU financial institutions. Detection-quality SLOs, DORA resilience testing, certification roadmap.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__dot"></span>
+            <div>
+              <h4>Scale <span class="tag">Funded</span></h4>
+              <p>Marketplace of policy packs, multi-region, and turnkey procurement evidence for security, risk and DPO review.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="roadmap__cta reveal">
+          <p>Investor, design partner, or just someone who's felt this pain?</p>
+          <a href="#demo" class="btn btn--primary btn--lg">Let's talk</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO + CONTACT -->
+    <section class="section section--alt" id="demo">
+      <div class="container contact__inner">
+        <div class="contact__copy reveal">
+          <span class="kicker">Get in touch</span>
+          <h2>Book a demo or start the conversation.</h2>
+          <p class="lead">
+            See Sovereign Guard intercept a real prompt, tokenize the PII, and seal the audit entry &mdash;
+            live, in 20 minutes.
+          </p>
+          <ul class="contact__points">
+            <li>🎯 Tailored to your stack &amp; regulatory scope</li>
+            <li>🛡️ NDA-friendly, no commitment</li>
+            <li>⏱️ Usually within 48 hours</li>
+          </ul>
+          <div class="contact__direct">
+            <span>Prefer email?</span>
+            <a href="mailto:hello@sovereignguard.eu">hello@sovereignguard.eu</a>
+          </div>
+        </div>
+
+        <div class="contact__card reveal">
+          <form id="contactForm" class="form" novalidate>
+            <div class="form__row">
+              <div class="field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" autocomplete="name" required placeholder="Jane Doe" />
+              </div>
+              <div class="field">
+                <label for="email">Work email</label>
+                <input type="email" id="email" name="email" autocomplete="email" required placeholder="jane@company.eu" />
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="field">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" autocomplete="organization" placeholder="Company name" />
+              </div>
+              <div class="field">
+                <label for="role">I am a…</label>
+                <select id="role" name="role">
+                  <option value="">Select</option>
+                  <option>Investor</option>
+                  <option>DPO / Compliance</option>
+                  <option>Security / Risk</option>
+                  <option>Founder / Engineering</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="message">What's the pain you're trying to solve?</label>
+              <textarea id="message" name="message" rows="4" placeholder="Tell us a little about your use case…"></textarea>
+            </div>
+            <label class="checkbox">
+              <input type="checkbox" id="newsletter" name="newsletter" checked />
+              <span>Keep me posted on Sovereign Guard (newsletter)</span>
+            </label>
+            <button type="submit" class="btn btn--primary btn--block btn--lg" id="contactSubmit">Request a demo</button>
+            <p class="form__status" id="contactStatus" role="status" aria-live="polite"></p>
+            <p class="form__fineprint">We'll only use your details to reply. No spam, unsubscribe anytime.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter" id="newsletter">
+      <div class="container newsletter__inner reveal">
+        <div>
+          <h2>Follow the build.</h2>
+          <p>Occasional updates on EU AI governance, the product, and the raise. No noise.</p>
+        </div>
+        <form id="newsletterForm" class="newsletter__form" novalidate>
+          <input type="email" id="newsletterEmail" name="email" required placeholder="you@company.eu" aria-label="Email address" />
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+      <p class="newsletter__status" id="newsletterStatus" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="brand__name">Sovereign<span>Guard</span></span>
+        <p>The AI governance gateway for EU enterprises.</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#problem">Problem</a>
+        <a href="#product">Product</a>
+        <a href="#platform">Platform</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#demo">Book a demo</a>
+      </nav>
+      <div class="footer__meta">
+        <span>EU AI Act · GDPR · DORA aligned</span>
+        <span>&copy; <span id="year"></span> Sovereign Guard</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
