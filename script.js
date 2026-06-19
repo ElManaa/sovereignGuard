@@ -3,24 +3,61 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   CONFIG — where form submissions go.
+   CONFIG — fill in these three values and everything works.
 
-   Option A (recommended, zero backend): create a free form at
-   https://formspree.io  (or similar) and paste the endpoint URL
-   below. Both the contact form and newsletter will POST JSON to it.
+   FORM_ENDPOINT  ── Formspree contact form endpoint.
+     1. Sign up free at https://formspree.io
+     2. Create a new form → copy the endpoint URL
+     3. Paste it below, e.g. "https://formspree.io/f/abcdefgh"
+     Contact form AND newsletter submissions go here.
 
-   Option B: point this at your own API endpoint that accepts JSON.
+   CAL_URL  ── Cal.com booking link for "Book a demo" buttons.
+     1. Sign up free at https://cal.com
+     2. Connect your Google/Outlook calendar
+     3. Create a "30-min demo" event type
+     4. Copy your link, e.g. "https://cal.com/sovereignguard/demo"
 
-   If left empty, the page falls back to opening the visitor's email
-   client (mailto) so no submission is ever lost.
+   BREVO_API_KEY + BREVO_LIST_ID  ── Brevo (ex-Sendinblue) newsletter.
+     1. Sign up free at https://brevo.com (EU servers, GDPR-compliant)
+     2. Go to Settings → API Keys → create a key
+     3. Go to Contacts → Lists → create a "Newsletter" list → note its ID (number)
+     4. Paste both below
+     If left empty, newsletter falls back to Formspree (also fine).
+
+   Leave any field empty to fall back gracefully — the contact
+   form opens the visitor's email client, booking opens the raw URL.
    ------------------------------------------------------------ */
 const CONFIG = {
-  FORM_ENDPOINT: "", // e.g. "https://formspree.io/f/xxxxxxxx"
+  // ── Contact form (Formspree) ────────────────────────────────
+  FORM_ENDPOINT: "https://formspree.io/f/xrevnawd",  
+
+  // ── Demo booking (Cal.com) ──────────────────────────────────
+  CAL_URL: "https://cal.com/elmanaa-houssem-688gt9/30-minutes-call",  
+  // ── Newsletter (Brevo) ─────────────────────────────────────
+  BREVO_API_KEY: "", // your Brevo API key
+  BREVO_LIST_ID: 0,  // your Brevo list ID (integer)
+
+  // ── Fallback email ─────────────────────────────────────────
   CONTACT_EMAIL: "hello@sovereignguard.eu",
 };
 
 /* ---------- Footer year ---------- */
 document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ---------- Cal.com — wire all "Book a demo" buttons ---------- */
+document.querySelectorAll('a[href="#demo"]').forEach((btn) => {
+  // Only intercept the nav + hero CTAs that say "Book a demo",
+  // not the anchor link to the contact section itself.
+  if (btn.textContent.trim().toLowerCase().includes("book")) {
+    btn.addEventListener("click", (e) => {
+      if (CONFIG.CAL_URL) {
+        e.preventDefault();
+        window.open(CONFIG.CAL_URL, "_blank", "noopener,noreferrer");
+      }
+      // If no CAL_URL set, fall through to the #demo section anchor
+    });
+  }
+});
 
 /* ---------- Sticky nav state ---------- */
 const nav = document.getElementById("nav");
@@ -156,6 +193,30 @@ const newsletterForm = document.getElementById("newsletterForm");
 const newsletterStatus = document.getElementById("newsletterStatus");
 const newsletterEmail = document.getElementById("newsletterEmail");
 
+async function subscribeBrevo(email) {
+  if (!CONFIG.BREVO_API_KEY || !CONFIG.BREVO_LIST_ID) return { ok: false, noConfig: true };
+  try {
+    const res = await fetch("https://api.brevo.com/v3/contacts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "api-key": CONFIG.BREVO_API_KEY,
+      },
+      body: JSON.stringify({
+        email,
+        listIds: [CONFIG.BREVO_LIST_ID],
+        updateEnabled: true, // re-add if contact already exists
+        attributes: { SOURCE: "landing_page" },
+      }),
+    });
+    // 201 = created, 204 = updated (already existed)
+    return { ok: res.status === 201 || res.status === 204 };
+  } catch (e) {
+    return { ok: false };
+  }
+}
+
 newsletterForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = newsletterEmail.value.trim();
@@ -164,25 +225,34 @@ newsletterForm.addEventListener("submit", async (e) => {
     return;
   }
 
+  const btn = newsletterForm.querySelector("button");
+  btn.disabled = true;
+  setStatus(newsletterStatus, "Subscribing…", null);
+
+  // Try Brevo first
+  const brevoResult = await subscribeBrevo(email);
+  if (brevoResult.ok) {
+    newsletterForm.reset();
+    setStatus(newsletterStatus, "You're in. Welcome aboard 🎉", "ok");
+    btn.disabled = false;
+    return;
+  }
+
+  // Fall back to Formspree
   const payload = {
     _subject: "Sovereign Guard newsletter signup",
     type: "newsletter_signup",
     email,
     submittedAt: new Date().toISOString(),
   };
-
-  const btn = newsletterForm.querySelector("button");
-  btn.disabled = true;
-  setStatus(newsletterStatus, "Subscribing…", null);
-
   const result = await postJSON(payload);
 
   if (result.ok) {
     newsletterForm.reset();
     setStatus(newsletterStatus, "You're in. Welcome aboard 🎉", "ok");
-  } else if (result.fallback) {
+  } else if (result.fallback || brevoResult.noConfig) {
     setStatus(newsletterStatus, "Opening your email app to confirm…", "ok");
-    mailtoFallback(payload._subject, `Please subscribe me to the Sovereign Guard newsletter.\nEmail: ${email}`);
+    mailtoFallback("Subscribe me to Sovereign Guard updates", `Please add me to the newsletter.\nEmail: ${email}`);
   } else {
     setStatus(newsletterStatus, "Something went wrong. Try again or email " + CONFIG.CONTACT_EMAIL, "err");
   }
